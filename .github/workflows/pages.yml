@@ -1,0 +1,57 @@
+name: Publish blog to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Set public URL
+        shell: bash
+        run: |
+          repo="${GITHUB_REPOSITORY#*/}"
+          owner="$GITHUB_REPOSITORY_OWNER"
+          if [ "$repo" = "$owner.github.io" ]; then
+            printf 'url: https://%s.github.io\nroot: /\n' "$owner" > _config.deploy.yml
+          else
+            printf 'url: https://%s.github.io/%s\nroot: /%s/\n' "$owner" "$repo" "$repo" > _config.deploy.yml
+          fi
+      - name: Build site
+        run: pnpm exec hexo generate --config _config.yml,_config.deploy.yml
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
