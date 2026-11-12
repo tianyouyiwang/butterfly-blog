@@ -22,3 +22,23 @@ footer:
   owner:
     enable: true
     since: 2026
+
+# Waline comments and article likes
+comments:
+  use: [Waline]
+  text: true
+  lazyload: false
+  count: true
+  card_post_count: true
+
+waline:
+  serverURL: "https://butterfly-blog-waline-tianyouyiwang.vercel.app"
+  pageview: false
+  option:
+    lang: zh-CN
+    reaction:
+      - https://unpkg.com/@waline/emojis@1.1.0/weibo/weibo_heart_eyes.png
+    locale:
+      reactionTitle: 喜欢这篇文章？
+      reaction0: 点赞
+      placeholder: 评论提交后需站长审核，通过后才会显示。
