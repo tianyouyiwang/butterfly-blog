@@ -33,8 +33,8 @@ pnpm exec hexo new "文章标题"
 
 ## 点赞与评论
 
-文章页使用 [Waline](https://waline.js.org/) 提供点赞和评论。评论服务地址为 `https://butterfly-blog-waline-tianyouyiwang.vercel.app`，管理员在该地址的 `/ui` 页面审核评论。
+文章页使用 [Waline](https://waline.js.org/) 提供点赞和评论。评论服务地址为 `https://butterfly-blog-waline.vercel.app`，管理员在该地址的 `/ui` 页面审核评论。
 
-在 Waline 的 Vercel 项目 Production 环境中保持 `COMMENT_AUDIT=true`，让每条新评论经审核后才公开；`SECURE_DOMAINS` 应包含 `tianyouyiwang.github.io` 和 `butterfly-blog-waline-tianyouyiwang.vercel.app`。修改服务端环境变量后须重新部署 Waline。点赞无需审核。
+在 Waline 的 Vercel 项目 Production 环境中保持 `COMMENT_AUDIT=true`，让每条新评论经审核后才公开；`SECURE_DOMAINS` 应包含 `tianyouyiwang.github.io` 和 `butterfly-blog-waline.vercel.app`。修改服务端环境变量后须重新部署 Waline。点赞无需审核。
 
 本地预览和 GitHub Pages 使用相同的 Waline 服务。如果以后更换服务地址，请同步更新 `_config.butterfly.yml` 中的 `waline.serverURL` 与 Vercel 项目的 `SECURE_DOMAINS`。

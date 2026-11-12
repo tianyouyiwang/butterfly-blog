@@ -32,7 +32,7 @@ comments:
   card_post_count: true
 
 waline:
-  serverURL: "https://butterfly-blog-waline-tianyouyiwang.vercel.app"
+  serverURL: "https://butterfly-blog-waline.vercel.app"
   pageview: false
   option:
     lang: zh-CN
