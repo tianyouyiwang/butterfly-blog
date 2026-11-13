@@ -67,6 +67,14 @@ system_prompt = "你是一个智能分析助手，请从多方面解释用户问
 
 系统提示词用于说明模型的角色和回答要求，后续用户输入则用于提出具体问题。
 
+模型也可以直接回答问题
+```
+answer = model.invoke([
+    ("system", system_prompt),
+])
+```
+但是这只是一次无状态的推理，无法得知聊天的前后文内容，而agent是包含模型、工具和执行循环的程序
+
 然后创建智能体
 ```python
 agent = create_agent(
