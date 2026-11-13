@@ -14,6 +14,8 @@ aside:
     enable: true
     content: 欢迎来到我的博客。这里分享技术实践、阅读和成长记录。
 
+background: /img/starfield-blog.png
+
 avatar:
   img: /img/幽鬼.jpg
   effect: false
