@@ -44,3 +44,8 @@ waline:
       reactionTitle: 喜欢这篇文章？
       reaction0: 点赞
       placeholder: 评论提交后需站长审核，通过后才会显示。
+
+# A separate animated night sky for the homepage header.
+inject:
+  bottom:
+    - "<script>if(document.querySelector('#page-header.full_page')){var s=document.createElement('script');s.src=new URL('js/meteor-hero.js',location.href);document.body.appendChild(s)}</script>"
